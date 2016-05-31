@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>IPアドレス管理システム</title>
+	<link rel="stylesheet" href="./common/font.css" type="text/css">
+	<link rel="stylesheet" href="./common/button.css" type="text/css">
+	<link rel="stylesheet" href="./common/page.css" type="text/css">
+	<style>
+		table{
+			width:600px;
+			background:#d8d8d8;
+		}
+		th{
+			padding:0 8px;
+		}
+		td{
+			padding:0 8px;
+			background:#fff;
+		}
+		tfoot td{
+			background:#ddd;
+		}
+		th.no,
+		th.qty,
+		th.class{
+			width : 15%;
+		}
+		dl.filters {
+			line-height:1.6;
+		}
+		dl.filters label{
+			color:#3377ee;
+			cursor:#pointer;
+		}
+		dl.filters label:hover{
+			color:#ff5577;
+		}
+		dl.filters dt{
+			width:100px;
+			float:left;
+		}
+		dl.filters dd{
+		}
+		.num {
+			text-align:right;
+		}
+		div.filters{
+			margin:16px 0;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./filter/jquery.simple-table-filter.js"></script>
+	<script>
+		jQuery(function(){
+			(function(){
+				var json = {}
+				$('table tbody tr').each(function(){
+					json[$(this).find('> td:eq(3)').text()-0] = '';
+				});
+				for(var i in json){
+					$('<option/>').html(i).appendTo('#qty-filter')
+				}
+			})();
+			$('table').simpleTableFilter({
+				filters : {
+					1 : 'input[name=class-filter]',
+					2 : '#category-filter',
+					3 : '#qty-filter'
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+<div id="top_frame">
+	IPアドレス管理システム
+
+		<dl class="filters">
+			<dt>Class：</dt>
+			<dd>
+				<input id="class-filter-0" name="class-filter" type="radio" value="" checked/><label for="class-filter-0">all</label>
+				<input id="class-filter-1" name="class-filter" type="radio" value="core"/><label for="class-filter-1">core</label>
+				<input id="class-filter-2" name="class-filter" type="radio" value="ui"/><label for="class-filter-2">ui</label>
+			</dd>
+			<dt>Category：</dt>
+			<dd>
+				<input id="category-filter"/>
+			</dd>
+			<dt>Qty：</dt>
+			<dd>
+				<select id="qty-filter"><option></option>
+				</select>
+			</dd>
+		</dl>
+
+</div>
+
+<div id="under_frame">
+		<br>
+		<br>
+
+	<table id="data">
+		<thead>
+			<tr>
+				<th class="no">No</th>
+				<th class="class">Class</th>
+				<th class="category">Category</th>
+				<th class="qty">Qty</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>core</td><td>Ajax</td><td class="num">203</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>core</td><td>Animation and Effects</td><td class="num">296</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>core</td><td>Browser Tweaks</td><td class="num">78</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>core</td><td>Data</td><td class="num">139</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>core</td><td>DOM</td><td class="num">141</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>ui</td><td>Drag-and-Drop</td><td class="num">37</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>core</td><td>Events</td><td class="num">130</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>ui</td><td>Forms</td><td class="num">364</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">取得</span></a></td><td>core</td><td>Integration</td><td class="num">101</td></tr>
+			<tr><td><a class="button" href="#"><span class="fontsize80">編集</span></a></td><td>core</td><td>JavaScript</td><td class="num">148</td></tr>
+
+		</tbody>
+	</table>
+
+		<br>
+		<br>
+
+
+
+
+<div id="under_frame">
+</body>
+
+</html>
